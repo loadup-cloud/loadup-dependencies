@@ -151,19 +151,36 @@
     </plugins>
   </build>
 
-  <repositories>
-    <repository>
-      <id>aliyun</id>
-      <url>https://maven.aliyun.com/repository/public</url>
-    </repository>
-    <repository>
+  <profiles>
+    <profile>
       <id>github</id>
-      <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+    <profile>
+      <id>dev</id>
+      <repositories>
+        <repository>
+          <id>center</id>
+          <url>https://maven.aliyun.com/repository/public</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
 
   <distributionManagement>
     <repository>
