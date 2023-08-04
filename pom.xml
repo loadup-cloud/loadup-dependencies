@@ -154,12 +154,12 @@
 
   <distributionManagement>
     <repository>
-      <id>loadup-github</id>
+      <id>github</id>
       <name>LoadUp Apache Maven Packages</name>
       <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
     </repository>
     <snapshotRepository>
-      <id>loadup-github</id>
+      <id>github</id>
       <name>LoadUp Apache Maven Packages</name>
       <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
     </snapshotRepository>
