@@ -153,7 +153,7 @@
 
   <repositories>
     <repository>
-      <id>central</id>
+      <id>aliyun</id>
       <url>https://maven.aliyun.com/repository/public</url>
     </repository>
     <repository>
