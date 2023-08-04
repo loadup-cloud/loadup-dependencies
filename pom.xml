@@ -37,6 +37,7 @@
     <cola.version>4.3.2</cola.version>
     <guava.version>32.1.2-jre</guava.version>
   </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
