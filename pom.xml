@@ -35,6 +35,9 @@
     <io.vavr.version>0.10.4</io.vavr.version>
     <cola.version>4.3.2</cola.version>
     <guava.version>32.1.2-jre</guava.version>
+    <loadup.version>1.0.0-SNAPSHOT</loadup.version>
+    <loadup.cloud.version>1.0.0-SNAPSHOT</loadup.cloud.version>
+    <loadup.framework.version>1.0.0-SNAPSHOT</loadup.framework.version>
 
   </properties>
 
