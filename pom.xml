@@ -38,11 +38,11 @@
         <loadup.version>1.0.0-SNAPSHOT</loadup.version>
         <loadup.cloud.version>1.0.0-SNAPSHOT</loadup.cloud.version>
         <loadup.framework.version>1.0.0-SNAPSHOT</loadup.framework.version>
-        <commons.lang3.version>3.17.0</commons.lang3.version>
         <commons.io.version>2.17.0</commons.io.version>
-        <commons.codec.version>1.17.1</commons.codec.version>
         <commons.csv.version>1.12.0</commons.csv.version>
         <velocity.version>2.4.1</velocity.version>
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
+        <mapstruct.lombok.binding.version>0.2.0</mapstruct.lombok.binding.version>
 
     </properties>
 
@@ -63,6 +63,7 @@
                 <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-components-bom</artifactId>
                 <version>${cola.version}</version>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -93,7 +94,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>${commons.lang3.version}</version>
+                <version>${commons-lang3.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -113,7 +114,7 @@
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
-                <version>${commons.codec.version}</version>
+                <version>${commons-codec.version}</version>
             </dependency>
 
             <dependency>
@@ -129,10 +130,47 @@
                 <version>${velocity.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${mapstruct.lombok.binding.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>license-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
@@ -163,6 +201,28 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${java.version}</source> <!-- depending on your project -->
+                        <target>${java.version}</target> <!-- depending on your project -->
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${org.mapstruct.version}</version>
+                            </path>
+                            <!-- other annotation processors -->
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <profiles>
