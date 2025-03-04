@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.3.5</version>
+        <version>3.4.3</version>
         <relativePath/>
     </parent>
     <groupId>com.github.loadup.framework</groupId>
@@ -30,11 +30,11 @@
         <project.encoding>UTF-8</project.encoding>
         <project.build.encoding>UTF-8</project.build.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.version>3.3.5</spring.boot.version>
-        <fastjson.version>2.0.53</fastjson.version>
-        <io.vavr.version>0.10.5</io.vavr.version>
+        <spring.boot.version>3.4.3</spring.boot.version>
+        <fastjson.version>2.0.56</fastjson.version>
+        <io.vavr.version>0.10.6</io.vavr.version>
         <cola.version>5.0.0</cola.version>
-        <guava.version>33.3.1-jre</guava.version>
+        <guava.version>33.4.0-jre</guava.version>
         <loadup.version>1.0.0-SNAPSHOT</loadup.version>
         <loadup.cloud.version>1.0.0-SNAPSHOT</loadup.cloud.version>
         <loadup.framework.version>1.0.0-SNAPSHOT</loadup.framework.version>
@@ -73,7 +73,7 @@
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
-                <version>${fastjson2.version}</version>
+                <version>${fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.vavr</groupId>
@@ -147,6 +147,7 @@
     </dependencyManagement>
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -202,29 +203,69 @@
                     <generateBackupPoms>false</generateBackupPoms>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.44.2</version>
+                <configuration>
+                    <formats>
+                        <!-- you can define as many formats as you want, each is independent -->
+                        <format>
+                            <!-- define the files to apply to -->
+                            <includes>
+                                <include>src/main/java/**/*.java</include>
+                                <include>src/test/java/**/*.java</include>
+                            </includes>
+                            <!-- define the steps to apply to those files -->
+                            <trimTrailingWhitespace/>
+                            <endWithNewline/>
+                            <indent>
+                                <tabs>true</tabs>
+                                <spacesPerTab>4</spacesPerTab>
+                            </indent>
+                            <indent>
+                                <spaces>true</spaces>
+                                <spacesPerTab>4</spacesPerTab>
+                            </indent>
+                        </format>
+                    </formats>
+                    <!-- define a language-specific format -->
+                    <java>
+                        <!-- no need to specify files, inferred automatically, but you can if you want -->
+                        <!-- apply a specific flavor of google-java-format and reflow long strings -->
+                        <googleJavaFormat>
+                            <version>1.8</version>
+                            <style>GOOGLE</style>
+                            <reflowLongStrings>true</reflowLongStrings>
+                            <formatJavadoc>true</formatJavadoc>
+                        </googleJavaFormat>
+                        <removeUnusedImports/> <!-- self-explanatory -->
+                        <formatAnnotations/>  <!-- fixes formatting of type annotations, see below -->
+                        <importOrder/> <!-- standard import order -->
+
+                        <!-- make sure every file has the following copyright header.
+                          optionally, Spotless can set copyright years by digging
+                          through git history (see "license" section below) -->
+                        <licenseHeader>
+                            <content>/* (C)$YEAR */
+                            </content>  <!-- or <file>${project.basedir}/license-header</file> -->
+                        </licenseHeader>
+                    </java>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
-                    <configuration>
-                        <source>${java.version}</source> <!-- depending on your project -->
-                        <target>${java.version}</target> <!-- depending on your project -->
-                        <annotationProcessorPaths>
-                            <path>
-                                <groupId>org.mapstruct</groupId>
-                                <artifactId>mapstruct-processor</artifactId>
-                                <version>${org.mapstruct.version}</version>
-                            </path>
-                            <!-- other annotation processors -->
-                        </annotationProcessorPaths>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+
     </build>
 
     <profiles>
