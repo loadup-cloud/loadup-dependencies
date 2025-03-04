@@ -62,6 +62,7 @@
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-components-bom</artifactId>
+                <type>pom</type>
                 <version>${cola.version}</version>
                 <scope>import</scope>
             </dependency>
