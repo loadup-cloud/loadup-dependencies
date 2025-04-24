@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.4.3</version>
+        <version>3.4.4</version>
         <relativePath/>
     </parent>
     <groupId>com.github.loadup.framework</groupId>
@@ -30,11 +30,11 @@
         <project.encoding>UTF-8</project.encoding>
         <project.build.encoding>UTF-8</project.build.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.version>3.4.3</spring.boot.version>
+        <spring.boot.version>3.4.4</spring.boot.version>
         <fastjson.version>2.0.56</fastjson.version>
         <io.vavr.version>0.10.6</io.vavr.version>
         <cola.version>5.0.0</cola.version>
-        <guava.version>33.4.0-jre</guava.version>
+        <guava.version>33.4.8-jre</guava.version>
         <loadup.version>1.0.0-SNAPSHOT</loadup.version>
         <loadup.cloud.version>1.0.0-SNAPSHOT</loadup.cloud.version>
         <loadup.framework.version>1.0.0-SNAPSHOT</loadup.framework.version>
