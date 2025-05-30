@@ -22,6 +22,7 @@
     <inceptionYear>2022</inceptionYear>
 
 
+
     <properties>
         <license.licenseName>mit</license.licenseName>
         <java.version>17</java.version>
@@ -247,7 +248,7 @@
                               optionally, Spotless can set copyright years by digging
                               through git history (see "license" section below) -->
                             <licenseHeader>
-                                <content>/* (C)$YEAR */</content>  <!-- or <file>${project.basedir}/license-header</file> -->
+                                <content>/*Copyright (C) ${inceptionYear} - $YEAR loadup_cloud*/</content>  <!-- or <file>${project.basedir}/license-header</file> -->
                             </licenseHeader>
                         </java>
                     </configuration>
