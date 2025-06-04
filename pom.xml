@@ -253,7 +253,7 @@
                             <licenseHeader>
 <!--                                <file>${maven.multiModuleProjectDirectory}/LICENSE.txt</file>-->
                                 <content>
-                                    /* Copyright (C) LoadUp Cloud ${inceptionYear} - $YEAR */
+                                    /* Copyright (C) LoadUp Cloud $YEAR */
                                 </content>  <!-- or <file>${project.basedir}/license-header</file> -->
                             </licenseHeader>
                         </java>
