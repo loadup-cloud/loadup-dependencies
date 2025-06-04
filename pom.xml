@@ -179,27 +179,27 @@
                         </annotationProcessorPaths>
                     </configuration>
                 </plugin>
-<!--                <plugin>-->
-<!--                    <artifactId>license-maven-plugin</artifactId>-->
-<!--                    <groupId>org.codehaus.mojo</groupId>-->
-<!--                    <version>2.4.0</version>-->
-<!--                    <executions>-->
-<!--                        <execution>-->
-<!--                            <configuration>-->
-<!--                                <licenseName>mit</licenseName>-->
-<!--                                <roots>-->
-<!--                                    <root>src/main/java</root>-->
-<!--                                    <root>src/test</root>-->
-<!--                                </roots>-->
-<!--                            </configuration>-->
-<!--                            <goals>-->
-<!--                                <goal>update-file-header</goal>-->
-<!--                            </goals>-->
-<!--                            <id>first</id>-->
-<!--                            <phase>process-sources</phase>-->
-<!--                        </execution>-->
-<!--                    </executions>-->
-<!--                </plugin>-->
+                <plugin>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <version>2.4.0</version>
+                    <executions>
+                        <execution>
+                            <configuration>
+                                <licenseName>mit</licenseName>
+                                <roots>
+                                    <root>src/main/java</root>
+                                    <root>src/test</root>
+                                </roots>
+                            </configuration>
+                            <goals>
+                                <goal>update-file-header</goal>
+                            </goals>
+                            <id>first</id>
+                            <phase>process-sources</phase>
+                        </execution>
+                    </executions>
+                </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
