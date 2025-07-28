@@ -270,6 +270,7 @@
                     <executions>
                         <execution>
                             <id>attach-sources</id>
+                            <phase>verify</phase> <!-- 在verify阶段执行 -->
                             <goals>
                                 <goal>jar-no-fork</goal>
                             </goals>
