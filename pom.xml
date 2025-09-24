@@ -32,21 +32,21 @@
         <project.build.encoding>UTF-8</project.build.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.boot.version>3.4.4</spring.boot.version>
-        <fastjson.version>2.0.56</fastjson.version>
+        <fastjson.version>2.0.59</fastjson.version>
         <io.vavr.version>0.10.6</io.vavr.version>
         <cola.version>5.0.0</cola.version>
-        <guava.version>33.4.8-jre</guava.version>
+        <guava.version>33.5.0-jre</guava.version>
         <loadup.version>1.0.0-SNAPSHOT</loadup.version>
         <loadup.cloud.version>1.0.0-SNAPSHOT</loadup.cloud.version>
         <loadup.framework.version>1.0.0-SNAPSHOT</loadup.framework.version>
-        <commons-io.version>2.19.0</commons-io.version>
-        <commons.io.version>2.19.0</commons.io.version>
+        <commons-io.version>2.20.0</commons-io.version>
+        <commons.io.version>2.20.0</commons.io.version>
         <commons-csv.version>1.12.0</commons-csv.version>
         <commons-collections4.version>4.5.0</commons-collections4.version>
         <velocity.version>2.4.1</velocity.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <mapstruct.lombok.binding.version>0.2.0</mapstruct.lombok.binding.version>
-        <spotless.version>2.44.5</spotless.version>
+        <spotless.version>2.46.1</spotless.version>
 
     </properties>
 
