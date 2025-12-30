@@ -211,7 +211,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>update-file-headers</id>
+                        <id>format</id>
                         <goals>
                             <goal>update-file-header</goal>
                         </goals>
