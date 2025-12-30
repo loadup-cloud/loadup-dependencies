@@ -243,17 +243,26 @@
                 <version>3.3.1</version>
                 <configuration>
                     <includePom>true</includePom>
+                    <skipSource>false</skipSource>
                 </configuration>
                 <executions>
-                    <!-- 禁用继承的默认 execution -->
+                    <!-- 明确禁用所有默认的 executions -->
+                    <execution>
+                        <id>default</id>
+                        <phase>none</phase>
+                    </execution>
                     <execution>
                         <id>default-jar</id>
                         <phase>none</phase>
                     </execution>
-                    <!-- 只在 package 阶段执行一次 -->
+                    <execution>
+                        <id>attach-sources-no-fork</id>
+                        <phase>none</phase>
+                    </execution>
+                    <!-- 只保留我们自定义的 execution -->
                     <execution>
                         <id>attach-sources</id>
-                        <phase>package</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
