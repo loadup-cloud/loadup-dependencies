@@ -242,12 +242,18 @@
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.3.1</version>
                 <configuration>
-                    <includePom>true</includePom> <!-- Include the POM file -->
+                    <includePom>true</includePom>
                 </configuration>
                 <executions>
+                    <!-- 禁用继承的默认 execution -->
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>none</phase>
+                    </execution>
+                    <!-- 只在 package 阶段执行一次 -->
                     <execution>
                         <id>attach-sources</id>
-                        <phase>package</phase> <!-- 在package阶段执行，避免与verify冲突 -->
+                        <phase>package</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
