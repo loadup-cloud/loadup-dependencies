@@ -339,9 +339,7 @@
                                 <style>GOOGLE</style>
                             </googleJavaFormat>
                             <removeUnusedImports/>
-                            <importOrder>
-                                <order>java,javax,jakarta,org,com,</order>
-                            </importOrder>
+                            <importOrder/>
                             <trimTrailingWhitespace/>
                             <endWithNewline/>
                         </java>
