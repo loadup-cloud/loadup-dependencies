@@ -203,7 +203,7 @@
                         <compilerArgs>
                             <!-- 虚拟线程在 JDK 21 中已是正式特性，无需预览 -->
                             <!-- 但可以添加性能优化参数 -->
-                            <arg>-Xlint:all</arg>
+                            <compilerArg>-Xlint:all</compilerArg>
                         </compilerArgs>
                         <encoding>UTF-8</encoding>
                         <forceJavacCompilerUse>true</forceJavacCompilerUse>
