@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -68,7 +69,7 @@
         <google-java-format.version>1.19.2</google-java-format.version>
         <spotless.skip>false</spotless.skip>
         <testcontainers.version>1.19.3</testcontainers.version>
-
+        <mybatis.flex.version>1.11.5</mybatis.flex.version>
         <skipUTs>false</skipUTs>
         <skipITs>false</skipITs>
     </properties>
@@ -196,6 +197,10 @@
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <release>${java.version}</release>
+                        <!-- 编译优化 -->
+                        <showWarnings>true</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+                        <optimize>true</optimize>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.mapstruct</groupId>
@@ -217,10 +222,32 @@
                                 <artifactId>spring-boot-configuration-processor</artifactId>
                                 <version>${spring.boot.version}</version>
                             </path>
+                            <path>
+                                <groupId>com.mybatis-flex</groupId>
+                                <artifactId>mybatis-flex-processor</artifactId>
+                                <version>${mybatis.flex.version}</version>
+                            </path>
+                            <compilerArgs>
+                                <arg>-Amybatisflex.processor.tablesGenerateEnable=true</arg>
+                                <arg>-Amybatisflex.processor.allInTablesEnable=true</arg>
+                                <arg>-Amybatisflex.processor.mapperGenerateEnable=false</arg>
+                            </compilerArgs>
                         </annotationProcessorPaths>
                     </configuration>
                 </plugin>
-
+                <!-- Spring Boot 插件配置 -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <!-- 虚拟线程相关优化 -->
+                        <jvmArguments>
+                            -XX:+UseZGC
+                            -XX:+ZGenerational
+                            -Xmx512m
+                        </jvmArguments>
+                    </configuration>
+                </plugin>
                 <!-- Maven Versions Plugin -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
