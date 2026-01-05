@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -41,6 +42,7 @@
         <project.encoding>UTF-8</project.encoding>
         <project.build.encoding>UTF-8</project.build.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring.boot.version>3.4.4</spring.boot.version>
         <fastjson.version>2.0.59</fastjson.version>
         <io.vavr.version>0.10.6</io.vavr.version>
@@ -196,6 +198,16 @@
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <release>${java.version}</release>
+
+                        <!-- 启用参数名称保留（对反射和序列化有用） -->
+                        <parameters>true</parameters>
+                        <compilerArgs>
+                            <!-- 虚拟线程在 JDK 21 中已是正式特性，无需预览 -->
+                            <!-- 但可以添加性能优化参数 -->
+                            <arg>-Xlint:all</arg>
+                        </compilerArgs>
+                        <encoding>UTF-8</encoding>
+                        <forceJavacCompilerUse>true</forceJavacCompilerUse>
                         <!-- 编译优化 -->
                         <showWarnings>true</showWarnings>
                         <showDeprecation>true</showDeprecation>
@@ -240,10 +252,24 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
                         <!-- 虚拟线程相关优化 -->
-                        <jvmArguments>-XX:+UseZGC
+                        <jvmArguments>
+                            -XX:+UseZGC
                             -XX:+ZGenerational
-                            -Xmx512m</jvmArguments>
+                            -Xmx512m
+                            -Xms256m
+                        </jvmArguments>
+                        <!-- 分层 JAR 支持 -->
+                        <layers>
+                            <enabled>true</enabled>
+                        </layers>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <!-- Maven Versions Plugin -->
                 <plugin>
@@ -252,6 +278,15 @@
                     <version>2.20.1</version>
                     <configuration>
                         <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
+                </plugin>
+                <!-- 资源处理插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
 
