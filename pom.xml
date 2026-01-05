@@ -204,16 +204,12 @@
                             <!-- 虚拟线程在 JDK 21 中已是正式特性，无需预览 -->
                             <!-- 但可以添加性能优化参数 -->
                             <compilerArg>-Xlint:all</compilerArg>
-                            <compilerArg>-Amybatisflex.processor.tablesGenerateEnable=true</compilerArg>
-                            <compilerArg>-Amybatisflex.processor.allInTablesEnable=true</compilerArg>
-                            <compilerArg>-Amybatisflex.processor.mapperGenerateEnable=false</compilerArg>
                         </compilerArgs>
                         <encoding>UTF-8</encoding>
-                        <forceJavacCompilerUse>true</forceJavacCompilerUse>
+                        <forceLegacyJavacApi>true</forceLegacyJavacApi>
                         <!-- 编译优化 -->
                         <showWarnings>true</showWarnings>
                         <showDeprecation>true</showDeprecation>
-                        <optimize>true</optimize>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.mapstruct</groupId>
