@@ -577,7 +577,7 @@
              - setting -DskipITs=true will skip only integration tests
         -->
         <profile>
-            <id>skip-unit-tests-via-skipUTs</id>
+            <id>skip-unit-tests</id>
             <activation>
                 <property>
                     <name>skipUTs</name>
@@ -590,7 +590,7 @@
         </profile>
 
         <profile>
-            <id>skip-integration-tests-via-skipITs</id>
+            <id>skip-integration-tests</id>
             <activation>
                 <property>
                     <name>skipITs</name>
@@ -603,7 +603,7 @@
         </profile>
 
         <profile>
-            <id>skip-all-tests-via-skipTests</id>
+            <id>skip-all-tests</id>
             <activation>
                 <property>
                     <name>skipTests</name>
