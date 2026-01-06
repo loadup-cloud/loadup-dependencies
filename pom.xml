@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -71,7 +72,11 @@
         <aws.sdk.version>2.41.0</aws.sdk.version>
         <skipUTs>false</skipUTs>
         <skipITs>false</skipITs>
+        <skipTests>false</skipTests>
         <skip.deploy>false</skip.deploy>
+        <!-- effective skip flags computed via profiles -->
+        <skip.unit.tests>false</skip.unit.tests>
+        <skip.integration.tests>false</skip.integration.tests>
     </properties>
 
     <dependencyManagement>
@@ -256,7 +261,8 @@
                         <jvmArguments>-XX:+UseZGC
                             -XX:+ZGenerational
                             -Xmx512m
-                            -Xms256m</jvmArguments>
+                            -Xms256m
+                        </jvmArguments>
                         <!-- 分层 JAR 支持 -->
                         <layers>
                             <enabled>true</enabled>
@@ -371,7 +377,8 @@
                             <exclude>**/*IT.java</exclude>
                             <exclude>**/*IntegrationTest.java</exclude>
                         </excludes>
-                        <skipTests>${skipUTs}</skipTests>
+                        <!-- 跳过条件：跳过所有 或 跳过单元测试 -->
+                        <skipTests>${skip.unit.tests}</skipTests>
                         <systemPropertyVariables>
                             <!-- 启用容器复用 -->
                             <testcontainers.reuse.enable>true</testcontainers.reuse.enable>
@@ -394,7 +401,8 @@
                             <include>**/*IT.java</include>
                             <include>**/*IntegrationTest.java</include>
                         </includes>
-                        <skipITs>${skipITs}</skipITs>
+                        <!-- 跳过条件：跳过所有 或 跳过集成测试 -->
+                        <skipITs>${skip.integration.tests}</skipITs>
                         <systemPropertyVariables>
                             <testcontainers.reuse.enable>true</testcontainers.reuse.enable>
                         </systemPropertyVariables>
@@ -562,6 +570,52 @@
                     <url>https://maven.aliyun.com/repository/public</url>
                 </repository>
             </repositories>
+        </profile>
+
+        <!-- Profiles that compute effective skip flags so the three input properties
+             (skipTests, skipUTs, skipITs) work in combination:
+             - setting -DskipTests=true will skip both unit and integration tests
+             - setting -DskipUTs=true will skip only unit tests
+             - setting -DskipITs=true will skip only integration tests
+        -->
+        <profile>
+            <id>skip-unit-tests-via-skipUTs</id>
+            <activation>
+                <property>
+                    <name>skipUTs</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <skip.unit.tests>true</skip.unit.tests>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>skip-integration-tests-via-skipITs</id>
+            <activation>
+                <property>
+                    <name>skipITs</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <skip.integration.tests>true</skip.integration.tests>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>skip-all-tests-via-skipTests</id>
+            <activation>
+                <property>
+                    <name>skipTests</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <skip.unit.tests>true</skip.unit.tests>
+                <skip.integration.tests>true</skip.integration.tests>
+            </properties>
         </profile>
     </profiles>
 </project>
