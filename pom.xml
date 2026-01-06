@@ -42,7 +42,7 @@
         <project.build.encoding>UTF-8</project.build.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring.boot.version>3.4.4</spring.boot.version>
+        <spring.boot.version>3.4.3</spring.boot.version>
         <fastjson.version>2.0.59</fastjson.version>
         <io.vavr.version>0.10.6</io.vavr.version>
         <cola.version>5.0.0</cola.version>
@@ -55,13 +55,10 @@
         <velocity.version>2.4.1</velocity.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <mapstruct.lombok.binding.version>0.2.0</mapstruct.lombok.binding.version>
-        <spotless.version>2.46.1</spotless.version>
         <testng.version>7.11.0</testng.version>
         <datafaker.version>2.5.3</datafaker.version>
         <mockito.version>5.20.0</mockito.version>
         <mysql.version>9.5.0</mysql.version>
-        <h2.version>2.4.240</h2.version>
-        <jackson.version>2.19.4</jackson.version>
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <commons-collections4.version>4.5.0</commons-collections4.version>
 
