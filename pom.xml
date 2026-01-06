@@ -65,10 +65,12 @@
         <spotless.version>3.1.0</spotless.version>
         <google-java-format.version>1.19.2</google-java-format.version>
         <spotless.skip>false</spotless.skip>
-        <testcontainers.version>1.19.3</testcontainers.version>
         <mybatis.flex.version>1.11.5</mybatis.flex.version>
+        <testcontainers.version>1.21.4</testcontainers.version>
+        <aws.sdk.version>2.41.0</aws.sdk.version>
         <skipUTs>false</skipUTs>
         <skipITs>false</skipITs>
+        <skip.deploy>false</skip.deploy>
     </properties>
 
     <dependencyManagement>
@@ -341,7 +343,13 @@
                         </execution>
                     </executions>
                 </plugin>
-
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <configuration>
+                        <skip>${skip.deploy}</skip>
+                    </configuration>
+                </plugin>
                 <!-- Surefire Plugin: 运行单元测试 (*Test.java) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
