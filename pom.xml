@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.loadup.framework</groupId>
@@ -36,6 +37,8 @@
         <project.build.encoding>UTF-8</project.build.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+
         <spring.boot.version>3.4.3</spring.boot.version>
         <fastjson.version>2.0.59</fastjson.version>
         <io.vavr.version>0.10.6</io.vavr.version>
@@ -64,6 +67,7 @@
         <testcontainers.version>2.0.3</testcontainers.version>
         <aws.sdk.version>2.41.0</aws.sdk.version>
 
+        <liquibase.version>4.29.2</liquibase.version>
         <lombok.version>1.18.36</lombok.version>
         <skipUTs>false</skipUTs>
         <skipITs>false</skipITs>
@@ -72,10 +76,25 @@
         <!-- effective skip flags computed via profiles -->
         <skip.unit.tests>false</skip.unit.tests>
         <skip.integration.tests>false</skip.integration.tests>
+
+
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>${testcontainers.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>com.github.loadup.framework</groupId>
@@ -177,19 +196,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers-bom</artifactId>
-                <version>${testcontainers.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <build>
@@ -257,7 +264,8 @@
                         <jvmArguments>-XX:+UseZGC
                             -XX:+ZGenerational
                             -Xmx512m
-                            -Xms256m</jvmArguments>
+                            -Xms256m
+                        </jvmArguments>
                         <!-- 分层 JAR 支持 -->
                         <layers>
                             <enabled>true</enabled>
@@ -378,7 +386,8 @@
                             <!-- 启用容器复用 -->
                             <testcontainers.reuse.enable>true</testcontainers.reuse.enable>
                             <!-- 禁用 Ryuk（可选，用于快速测试） -->
-                            <testcontainers.ryuk.container.prune.enabled>false</testcontainers.ryuk.container.prune.enabled>
+                            <testcontainers.ryuk.container.prune.enabled>false
+                            </testcontainers.ryuk.container.prune.enabled>
                         </systemPropertyVariables>
                         <!-- 串行执行测试，避免容器冲突 -->
                         <forkCount>1</forkCount>
