@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>3.4.3</version>
-        <relativePath/>
-    </parent>
+
     <groupId>com.github.loadup.framework</groupId>
     <artifactId>loadup-dependencies</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -171,12 +167,7 @@
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${org.mapstruct.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-            </dependency>
+
             <dependency>
                 <!-- Import dependency management from Resilience4j -->
                 <groupId>io.github.resilience4j</groupId>
@@ -191,6 +182,12 @@
                 <version>${testcontainers.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -259,7 +256,8 @@
                         <jvmArguments>-XX:+UseZGC
                             -XX:+ZGenerational
                             -Xmx512m
-                            -Xms256m</jvmArguments>
+                            -Xms256m
+                        </jvmArguments>
                         <!-- 分层 JAR 支持 -->
                         <layers>
                             <enabled>true</enabled>
@@ -380,7 +378,8 @@
                             <!-- 启用容器复用 -->
                             <testcontainers.reuse.enable>true</testcontainers.reuse.enable>
                             <!-- 禁用 Ryuk（可选，用于快速测试） -->
-                            <testcontainers.ryuk.container.prune.enabled>false</testcontainers.ryuk.container.prune.enabled>
+                            <testcontainers.ryuk.container.prune.enabled>false
+                            </testcontainers.ryuk.container.prune.enabled>
                         </systemPropertyVariables>
                         <!-- 串行执行测试，避免容器冲突 -->
                         <forkCount>1</forkCount>
