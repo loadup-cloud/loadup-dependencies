@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.loadup.framework</groupId>
+    <groupId>io.github.loadup-cloud</groupId>
     <artifactId>loadup-dependencies</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>Default Component Dependencies</name>
     <description>Default Component Dependencies</description>
+    <url>https://github.com/loadup-cloud</url>
     <inceptionYear>2025</inceptionYear>
     <organization>
         <name>loadup_cloud</name>
     </organization>
+    <licenses>
+        <license>
+            <name>GPL-3.0</name>
+            <url>https://opensource.org/license/gpl-3-0</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>Laysan</id>
+            <email>lslvxy@gmail.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/loadup-cloud/loadup-dependencies.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/loadup-cloud/loadup-dependencies.git</developerConnection>
+        <url>https://github.com/loadup-cloud/loadup-dependencies</url>
 
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>LoadUp Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
-        </repository>
-        <snapshotRepository>
-            <id>github</id>
-            <name>LoadUp Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
-        </snapshotRepository>
-    </distributionManagement>
+    </scm>
+
 
     <properties>
         <license.licenseName>gpl_v3</license.licenseName>
@@ -42,9 +50,9 @@
         <io.vavr.version>0.10.6</io.vavr.version>
         <cola.version>5.0.0</cola.version>
         <guava.version>33.5.0-jre</guava.version>
-        <loadup.version>1.0.0-SNAPSHOT</loadup.version>
-        <loadup.cloud.version>1.0.0-SNAPSHOT</loadup.cloud.version>
-        <loadup.framework.version>1.0.0-SNAPSHOT</loadup.framework.version>
+        <loadup.version>1.0.0</loadup.version>
+        <loadup.cloud.version>1.0.0</loadup.cloud.version>
+        <loadup.framework.version>1.0.0</loadup.framework.version>
         <commons-io.version>2.20.0</commons-io.version>
         <opencsv.version>5.12.0</opencsv.version>
         <velocity.version>2.4.1</velocity.version>
@@ -60,7 +68,7 @@
         <okhttp.version>5.3.2</okhttp.version>
         <spotless.version>3.1.0</spotless.version>
         <google-java-format.version>1.19.2</google-java-format.version>
-        <spotless.skip>rue</spotless.skip>
+        <spotless.skip>true</spotless.skip>
         <mybatis.flex.version>1.11.5</mybatis.flex.version>
         <testcontainers.version>2.0.3</testcontainers.version>
         <aws.sdk.version>2.41.0</aws.sdk.version>
@@ -96,12 +104,12 @@
             </dependency>
 
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>loadup-commons-lang</artifactId>
                 <version>${loadup.framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>loadup-commons-dto</artifactId>
                 <version>${loadup.framework.version}</version>
             </dependency>
@@ -145,7 +153,7 @@
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>${commons.io.version}</version>
+                <version>${commons-io.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -263,7 +271,8 @@
                         <jvmArguments>-XX:+UseZGC
                             -XX:+ZGenerational
                             -Xmx512m
-                            -Xms256m</jvmArguments>
+                            -Xms256m
+                        </jvmArguments>
                         <!-- 分层 JAR 支持 -->
                         <layers>
                             <enabled>true</enabled>
@@ -384,7 +393,8 @@
                             <!-- 启用容器复用 -->
                             <testcontainers.reuse.enable>true</testcontainers.reuse.enable>
                             <!-- 禁用 Ryuk（可选，用于快速测试） -->
-                            <testcontainers.ryuk.container.prune.enabled>false</testcontainers.ryuk.container.prune.enabled>
+                            <testcontainers.ryuk.container.prune.enabled>false
+                            </testcontainers.ryuk.container.prune.enabled>
                         </systemPropertyVariables>
                         <!-- 串行执行测试，避免容器冲突 -->
                         <forkCount>1</forkCount>
@@ -535,6 +545,29 @@
                 <artifactId>spotless-maven-plugin</artifactId>
                 <inherited>true</inherited>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.9.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.8</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -555,22 +588,38 @@
                     <id>github</id>
                     <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
                 </repository>
-            </repositories>
-        </profile>
-        <profile>
-            <id>aliyun</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <repositories>
                 <repository>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
-                    <id>center</id>
+                    <id>aliyun</id>
                     <url>https://maven.aliyun.com/repository/public</url>
                 </repository>
             </repositories>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>LoadUp Apache Maven Packages</name>
+                    <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+                </repository>
+                <snapshotRepository>
+                    <id>github</id>
+                    <name>LoadUp Apache Maven Packages</name>
+                    <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <repository>
+                    <id>central</id>
+                    <url>https://central.sonatype.com/repository/maven-releases/</url>
+                </repository>
+            </distributionManagement>
         </profile>
 
         <!-- Profiles that compute effective skip flags so the three input properties
