@@ -34,7 +34,7 @@ jobs:
 
       - name: Deploy to GitHub Packages
         if: github.event_name == 'push'
-        run: mvn deploy -DskipTests
+        run: mvn deploy -P github -DskipTests
         env:
           GITHUB_ACTOR: ${{ secrets.OSSRH_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.OSSRH_TOKEN }}
