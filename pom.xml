@@ -5,7 +5,7 @@
 
     <groupId>io.github.loadup-cloud</groupId>
     <artifactId>loadup-dependencies</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>pom</packaging>
     <name>Default Component Dependencies</name>
     <description>Default Component Dependencies</description>
@@ -381,6 +381,10 @@
                             </goals>
                         </execution>
                     </executions>
+                    <configuration>
+                        <!-- 完全禁用所有 Javadoc 检查 -->
+                        <doclint>none</doclint>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
